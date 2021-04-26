@@ -20,23 +20,23 @@ import re
 
 
 def ej1():
-    print('Ejercicios con diccionarios')
+    print('Ejercicios con diccionarios \n')
     # Crear un diccionario vacio que luego completaremos
     # con el stock de elementos de ferreteris
     # el diccionario vacio debe llamarse "stock"
     
-    # stock = ....
+    stock = {}
 
     # Luego de crear el diccionario completelo
     # con el siguiente stock:
-    # tornillos = 100
-    # tuercas = 150
-    # arandelas = 300
+    stock['tornillos'] = 100
+    stock['tuercas'] = 150
+    stock['arandelas'] = 300
 
     # Los nombres tornillos, tuercas y arandelas
     # son las claves (keys) del diccionario
     # mientras que las cantidades son los valores (values)
-
+    print(stock)
     # Una vez armado el diccionario imprimirlo en pantalla con print
 
 
@@ -48,6 +48,7 @@ def ej2():
     # Crear un diccionario por cada mes, cada diccionario se llamara "mes"
     # Cada uno que se genere debe tener los tres campos
     # tornillos, tuerca y arandelas y su respectivo stock
+
 
     # Cada diccionario deberá almacenarse en una lista llamada stock
 
@@ -84,8 +85,34 @@ def ej2():
     # pero los valores para cada diccionario en cada mes
     # son ingresados por consola
 
+    mes_enero = {'Tornillos':0,'Tuercas':0,'Arandelas': 0}
+    mes_febrero = {'Tornillos':0,'Tuercas':0,'Arandelas':0}
+    mes_marzo = {'Tornillos':0,'Tuercas':0,'Arandelas':0}
+    
+    stock = []
+    stock.append(mes_enero)
+    stock.append(mes_febrero)
+    stock.append(mes_marzo)
+    
+    for i in range (len(stock)):
 
-def eje3():
+        mes  = stock[i]
+        print ('ingrese el stock del mes {}'.format(i))
+           
+        cantidad_tornillos = int (input("ingrese la cantidad de tornillos: \n"))
+        mes['Tornillos'] = cantidad_tornillos
+
+        cantidad_tuercas = int (input("ingrese la cantidad de Tuercas: \n"))
+        mes['Tuercas'] =cantidad_tuercas
+        
+        cantidad_arandelas = int (input("ingrese la cantidad de Arandelas: \n"))
+        mes['Arandelas'] = cantidad_arandelas
+
+
+    print(stock)
+
+
+def ej3():
     print('Ejercicio de archivos CSV')
     '''
     Realice un programa que abra el archivo 'stock.csv'
@@ -93,8 +120,21 @@ def eje3():
     de todo el archivo, sumando el stock en cada
     fila del archivo
     '''
+    csvfile = open ('stock.csv')
 
+    stock = list(csv.DictReader(csvfile))
+    stock_tornillos = []
+    for i in range(len(stock)):
+        tipo = stock[i]
+        for k, v in tipo.items():
+            if k == 'tornillos':
+                stock_tornillos.append(int(v))
+                      
+    print(sum(stock_tornillos))
 
+    csvfile.close()
+
+ 
 def ej4():
     print('Ejercicios con archivos CSV')
     archivo = 'propiedades.csv'
@@ -105,11 +145,27 @@ def ej4():
     de departamentos de 3 ambientes disponibles.
     Al finalizar el proceso, imprima en pantalla los resultados.
     '''
+    with open (archivo) as csvfile:
+        data = list(csv.DictReader(csvfile))
+    
+    contador_2_ambientes = 0
+    contador_3_ambientes = 0
+
+    for i in range (len(data)):
+        columna = data[i]
+        for k,v in columna.items():
+            if (k == 'ambientes') and (v == "2"):
+                contador_2_ambientes += 1
+            if (k == 'ambientes') and (v == "3"):
+                contador_3_ambientes += 1
+
+    print (contador_2_ambientes)
+    print (contador_3_ambientes)
 
 
 if __name__ == '__main__':
-    print("Bienvenidos a otra clase de Inove con Python")
+    print("Bienvenidos a otra clase de Inove con Python \n")
     ej1()
-    # ej2()
-    # ej3()
-    # ej4()
+    ej2()
+    ej3()
+    ej4()
