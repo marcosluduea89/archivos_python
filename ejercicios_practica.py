@@ -131,10 +131,7 @@ def ej3():
                 stock_tornillos.append(int(v))
                       
     print(sum(stock_tornillos))
-
-    csvfile.close()
-
- 
+    
 def ej4():
     print('Ejercicios con archivos CSV')
     archivo = 'propiedades.csv'
@@ -165,7 +162,7 @@ def ej4():
 
 if __name__ == '__main__':
     print("Bienvenidos a otra clase de Inove con Python \n")
-    ej1()
-    ej2()
+    #ej1()
+    #ej2()
     ej3()
-    ej4()
+    #ej4()
